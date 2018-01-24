@@ -1,16 +1,16 @@
 import random, string, barcode  # import the necessary modules
 
 
-def newIDs(num):  # function to make 11 character random alphanumeric IDs
-    list1 = []  # initialise the list as empty
-    for var in range(num):  # for each ID requested
-        x = ''.join(random.choice(string.ascii_letters.upper() + string.digits) for _ in range(11))
-        # generate a random uppercase letter or number and append it to a string 11 times
-        list1.append(x)  # append that string to a list
-    return list1  # return said list
+def newID():  # function to make 11 character random alphanumeric IDs
+    x = ''.join(random.choice(string.ascii_letters.upper() + string.digits) for _ in range(11))
+    # generate a random uppercase letter or number and append it to a string 11 times
+    return x  # return string
 
 
-list2 = newIDs(20)  # generate 20 IDs
-for item in list2:  # for each item in the list produced
-    bc = barcode.Code39(str(item))  # create a code39 barcode with a checksum for the ID
-    name = bc.save('barcode{0}'.format(list2.index(item)))  # save it under the name "barcode<number>.svg"
+ID = input("Enter barcode to generate, or leave blank for random:")
+if ID == '':
+    ID = newID()  # generate 20 IDs
+elif len(ID) != 11:
+    print("Invalid ID")  # FIX ME
+bc = barcode.Code39(ID.upper())  # create a code39 barcode with a checksum for the ID
+name = bc.save('barcode')  # save it under the name "barcode<number>.svg"
