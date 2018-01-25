@@ -35,7 +35,6 @@ body {
 
 .input-group {
 	width: 230px;
-	border-radius: .5rem;
 	margin-left: 10px;
 	margin-right: auto;
 	height: 40px;
@@ -43,12 +42,13 @@ body {
 	border: none;
 }
 
-.input-group-addon {
+.addon-left {
 	text-align: center;
 	background: #6040ff;
 	min-width: 25px;
 	line-height: 40px;
-	border-radius: 0.5rem;
+	border-bottom-left-radius: .5rem;
+	border-top-left-radius: .5rem;
 }
 
 .filtertext {
@@ -56,6 +56,12 @@ body {
 	color: BLUE;
 	text-align: center;
 	border: none;
+	border-radius: .5rem;
+}
+
+.idbox {
+	margin-top: 55vh;
+	height: 40px;
 }
 
 .filtertext:focus {
