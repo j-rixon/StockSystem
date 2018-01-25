@@ -18,7 +18,6 @@ body {
 }
 
 #sidebar {
-    /* don't forget to add all the previously mentioned styles here too */
     background: #9070ff;
     color: #fff;
     transition: all 0.3s;
@@ -36,18 +35,27 @@ body {
 
 .input-group {
 	width: 230px;
-	border-style: none;
 	border-radius: .5rem;
 	margin-left: 10px;
 	margin-right: auto;
 	height: 40px;
 	margin-bottom: 20px;
+	border: none;
+}
+
+.input-group-addon {
+	text-align: center;
+	background: #6040ff;
+	min-width: 25px;
+	line-height: 40px;
+	border-radius: 0.5rem;
 }
 
 .filtertext {
 	background-color : #bbbbff;
 	color: BLUE;
 	text-align: center;
+	border: none;
 }
 
 .filtertext:focus {
