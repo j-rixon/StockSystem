@@ -60,12 +60,16 @@ body {
 }
 
 .idbox {
-	margin-top: 55vh;
+	margin-top: 37vh;
 	height: 40px;
 }
 
 .filtertext:focus {
 	background-color: #ddddff
+}
+
+.stocktable {
+	padding-top: 30px;
 }
 
 @media (max-width: 768px) {
