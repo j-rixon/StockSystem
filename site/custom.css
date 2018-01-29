@@ -68,8 +68,9 @@ body {
 	background-color: #ddddff
 }
 
-.stocktable {
+table, th, td {
 	padding-top: 30px;
+	border: 2px solid black;
 }
 
 @media (max-width: 768px) {
