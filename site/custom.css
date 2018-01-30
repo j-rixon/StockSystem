@@ -1,0 +1,83 @@
+.wrapper {
+	display: flex;
+}
+
+#sidebar {
+	min-width: 250px;
+	max-width: 250px;
+	height: 100vh;
+}
+
+#sidebar.active {
+	margin-left: -250px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #d4d4ff;
+}
+
+#sidebar {
+    background: #9070ff;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #6040ff;
+	text-align: center
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+}
+
+.input-group {
+	width: 230px;
+	margin-left: 10px;
+	margin-right: auto;
+	height: 40px;
+	margin-bottom: 20px;
+	border: none;
+}
+
+.addon-left {
+	text-align: center;
+	background: #6040ff;
+	min-width: 25px;
+	line-height: 40px;
+	border-bottom-left-radius: .5rem;
+	border-top-left-radius: .5rem;
+}
+
+.filtertext {
+	background-color : #bbbbff;
+	color: BLUE;
+	text-align: center;
+	border: none;
+	border-radius: .5rem;
+}
+
+.idbox {
+	margin-top: 37vh;
+	height: 40px;
+}
+
+.filtertext:focus {
+	background-color: #ddddff
+}
+
+table, th, td {
+	padding-top: 30px;
+	border: 2px solid black;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}
