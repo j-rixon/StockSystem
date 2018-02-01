@@ -7,10 +7,14 @@ def newID():  # function to make 11 character random alphanumeric IDs
     return x  # return string
 
 
-ID = input("Enter barcode to generate, or leave blank for random:")
-if ID == '':
-    ID = newID()  # generate 20 IDs
-elif len(ID) != 11:
-    print("Invalid ID")  # FIX ME
+ID = ""
+while len(ID) != 11 or ID.isalnum() is False:
+    ID = input("Enter barcode to generate, or leave blank for random:")
+    if ID == '':
+        ID = newID()  # generate ID
+        break
+    elif len(ID) != 11 or ID.isalnum() is False:
+        print("Invalid ID")  # FIX ME
 bc = barcode.Code39(ID.upper())  # create a code39 barcode with a checksum for the ID
 name = bc.save('barcode')  # save it under the name "barcode<number>.svg"
+print(ID)
