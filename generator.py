@@ -1,4 +1,4 @@
-import random, string, barcode  # import the necessary modules
+import random, string, barcode, os  # import the necessary modules
 
 
 def newID():  # function to make 11 character random alphanumeric IDs
@@ -17,3 +17,4 @@ while len(ID) != 11 or ID.isalnum() is False:
         print("Invalid ID")  # FIX ME
 bc = barcode.Code39(ID.upper())  # create a code39 barcode with a checksum for the ID
 name = bc.save('barcode')  # save it under the name "barcode<number>.svg"
+os.startfile("barcode.svg")
