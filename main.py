@@ -43,6 +43,16 @@ class dbCtrl:
         return cur.execute(query)
 
 
+id = []
+name = []
+price = []
+qty = []
+
 banana = dbCtrl()
-banana.filterQuery() # Test case
-print(cur.fetchall())
+banana.filterQuery(search="x") # Test case
+for row in cur:
+    id.append(row[0])
+    name.append(row[1])
+    price.append(row[3])
+    qty.append(row[4])
+

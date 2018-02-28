@@ -1,7 +1,11 @@
-from flask import Flask, send_file
+from flask import Flask
 from flask_cors import CORS
 from flask_restful import Resource, Api
 
+
+class Main(Resource):
+    def get(self):
+        return "Main page"
 
 class Products(Resource):
     def get(self):
@@ -16,6 +20,7 @@ class Product_Details(Resource):
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
+api.add_resource(Main, '/')
 api.add_resource(Products, '/products')
 api.add_resource(Product_Details, '/products/<product_id>')
 

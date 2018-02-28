@@ -1,0 +1,62 @@
+<html>
+<!DOCTYPE html>
+<head>
+<!--Bootstrap CSS-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!-- Boostrap Js -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<!-- Custom CSS -->
+<link rel="stylesheet" href="custom.css">
+</head>
+<body>
+	<div class="wrapper">
+		<nav id="sidebar">
+			<!-- Header -->
+			<div class="sidebar-header">
+				<h3>Menu</h3>
+			</div>
+			<!-- Filtering -->
+			<ul class="list-unstyled components">
+				<li><div class="input-group"><input type="text" class="form-control filtertext" placeholder="Search"></div>
+				<li>
+					<div class="input-group">
+						<div class="input-group-addon">£</div>
+						<input type="number" class="form-control filtertext" placeholder="Min. price">
+					</div>
+				</li>	
+			</ul>
+		</nav>
+		<div class='container-fluid'>
+			<div class='row'>
+				<div class="col-md-4">
+					<button type="button" class="btn btn-success btn-lg btn-block">Generate barcodes</button>
+				</div>
+				<div class="col-md-4">
+					<button type="button" class="btn btn-primary btn-lg btn-block">Statistics</button>
+				</div>
+				<div class="col-md-4">
+					<button type="button" class="btn btn-danger btn-lg btn-block">Proceed to Sale</button>
+				</div>
+			</div>
+			<div class="row">
+				<div id="content">
+					<button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+						<i class="glyphicon glyphicon-align-left"></i>
+						Toggle Sidebar
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
