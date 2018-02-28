@@ -16,7 +16,7 @@
 <!-- Font Awesome CSS -->
 <link rel="stylesheet" href="fontawesome-free-5.0.6\on-server\css\fontawesome.min.css">
 </head>
-<body ng-app="myApp">
+<body ng-app="myApp" ng-controller="myCtrl>
 	<div class="wrapper">
 		<nav id="sidebar">
 			<!-- Header -->
@@ -86,6 +86,12 @@
             });
         });
     </script>
-
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function($scope, $http) {
+		$http.get("http://localhost:5002")
+		.then(function (response) {$scope.names = response.data;});
+		});
+</script>
 </body>
 </html>
