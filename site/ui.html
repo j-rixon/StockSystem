@@ -15,8 +15,10 @@
 <link rel="stylesheet" href="custom.css">
 <!-- Font Awesome CSS -->
 <link rel="stylesheet" href="fontawesome-free-5.0.6\on-server\css\fontawesome.min.css">
+<!-- Angular JavaScript -->
+<script src="app.js"></script>
 </head>
-<body ng-app="myApp" ng-controller="myCtrl>
+<body ng-app="myApp" ng-controller="myCtrl">
 	<div class="wrapper">
 		<nav id="sidebar">
 			<!-- Header -->
@@ -70,28 +72,14 @@
 					<td>Name</td>
 					<td>Quantity</td>
 				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
+				<tr ng-repeat="product in productList">
+					<td>{{product.ID}}</td>
+					<td>{{product.Name}}</td>
+					<td>{{product.Quantity</td>
 					<td></td>
 				</tr>
 			</table>
 		</div>
 	</div>
-	<script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-        });
-    </script>
-	<script>
-		var app = angular.module('myApp', []);
-		app.controller('myCtrl', function($scope, $http) {
-		$http.get("http://localhost:5002")
-		.then(function (response) {$scope.names = response.data;});
-		});
-</script>
 </body>
 </html>
