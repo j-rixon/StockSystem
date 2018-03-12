@@ -1,28 +1,43 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_restful import Resource, Api
+from dbCtrl import dbCtrl
 
 
-class Main(Resource):
-    def get(self):
-        return "Main page"
+class Products(Resource): # contains all functions for the main screen
+    def get(self):  # the read function
+        return jsonify(db.filterQuery().fetchall())   #return a JSON dict of everything (filterQuery() without parameters)
 
-class Products(Resource):
-    def get(self):
-        return "Products"
+    def post(self):
+        json_data = request.get_json(force=True)    # get the json data that is passed to it
+        Id = json_data['ID']    # assign variables from the JSON
+        category = json_data['Category']
+        name = json_data['Name']
+        qty = json_data['Quantity']  # these cannot be anything but numbers due to the type of input used, no validation needed
+        price = json_data['Price']   #
+        extrainfo = json_data['extrainfo']
+        db.createItem(sqlClean(Id), sqlClean(name), sqlClean(category), price, qty, sqlClean(extrainfo)) # create or update the entry using 'cleaned' values
 
 
-class Product_Details(Resource):
-    def get(self, product_id):
-        return "A Product"
+class Product(Resource):
+    def delete(self, productid):
+        db.deleteItem(productid)
 
 
-app = Flask(__name__)
-CORS(app)
-api = Api(app)
-api.add_resource(Main, '/')
-api.add_resource(Products, '/products')
-api.add_resource(Product_Details, '/products/<product_id>')
+def sqlClean(myvalue):      # validating strings, editing ones that may cause problems in the SQL
+    if myvalue is None: # if the passed value is null, keep it that way
+        return None
+    res = str(myvalue)  # turn the passed value into a string
+    res = res.replace("'", "''") # escape ' symbols so as not to break SQL code
+    res = res.replace(";", ",") # replace ; with , to avoid SQL injection
+    return res
+
+db = dbCtrl()   # set up the database script I made
+app = Flask(__name__) # Launch Flask
+CORS(app) # enable CORS for the app - crucial for running Python script by the Javascript
+api = Api(app) # create the API
+api.add_resource(Products, '/products') # create the page for everything in the Products class
+api.add_resource(Product, '/product/<productid>') # create the page for the Product class
 
 if __name__ == '__main__':
-    app.run(port=5002)
+    app.run(port=5002)  # run the website

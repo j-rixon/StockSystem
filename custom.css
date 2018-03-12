@@ -18,6 +18,7 @@ body {
 }
 
 #sidebar {
+    /* don't forget to add all the previously mentioned styles here too */
     background: #9070ff;
     color: #fff;
     transition: all 0.3s;
@@ -35,43 +36,22 @@ body {
 
 .input-group {
 	width: 230px;
+	border-style: none;
+	border-radius: .5rem;
 	margin-left: 10px;
 	margin-right: auto;
 	height: 40px;
 	margin-bottom: 20px;
-	border: none;
-}
-
-.addon-left {
-	text-align: center;
-	background: #6040ff;
-	min-width: 25px;
-	line-height: 40px;
-	border-bottom-left-radius: .5rem;
-	border-top-left-radius: .5rem;
 }
 
 .filtertext {
 	background-color : #bbbbff;
 	color: BLUE;
 	text-align: center;
-	border: none;
-	border-radius: .5rem;
-}
-
-.idbox {
-	margin-top: 37vh;
-	height: 40px;
 }
 
 .filtertext:focus {
 	background-color: #ddddff
-}
-
-table, th, td {
-	height:80px;
-	padding-top: none;
-	border: 2px solid black;
 }
 
 @media (max-width: 768px) {
