@@ -19,13 +19,13 @@ class Products(Resource): # contains all functions for the main screen
         db.createItem(sqlClean(Id), sqlClean(name), sqlClean(category), price, qty, sqlClean(extrainfo)) # create or update the entry using 'cleaned' values
 
 
-class Product(Resource):
-    def delete(self, productid):
-        db.deleteItem(productid)
+class Product(Resource): # what is called when referring to a specific product (i.e. dealing with a specific item)
+    def delete(self, productid):  # productid is pulled from the URL as shown below in the add_resource statement
+        db.deleteItem(productid)  # delete the item using the database module
 
 
 def sqlClean(myvalue):      # validating strings, editing ones that may cause problems in the SQL
-    if myvalue is None: # if the passed value is null, keep it that way
+    if myvalue is None or myvalue == '': # if the passed value is null, keep it that way
         return None
     res = str(myvalue)  # turn the passed value into a string
     res = res.replace("'", "''") # escape ' symbols so as not to break SQL code

@@ -7,6 +7,7 @@ $(document).ready(function () {
 angular.module('myApp', []) // Specify the app to write for
 	.controller('myCtrl', function($scope, $http) { // Specify the right controller
 		$scope.productList = {} // Initialise the product list to be an empty dict
+		$scope.searchAttrs = {} // Initialise a dictionary for filter terms
 
 		$scope.getItems = function() {
 			$http.get("http://localhost:5002/products").then(function (response) { // Run products.get() in api.py
@@ -26,17 +27,14 @@ angular.module('myApp', []) // Specify the app to write for
 
         $scope.delItem = function() {
             $http.delete("http://localhost:5002/product/" + $scope.selected, []).then(function(response) {
-                $scope.getItems();
+            // call the delete function in http, send command to localhost:5002/products/ID
+                $scope.getItems();  // update the table after doing so
             });
         };
 
         $scope.selectItem = function(product) {
             $scope.selected = product;  // set whatever is passed in as the selected item
         };
-
-//        $scope.newSearch = function(product) {
-//            $scope.searchterm = {};
-//        };
 
 		$scope.getItems()
 	});
