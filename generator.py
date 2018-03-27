@@ -14,7 +14,7 @@ while len(ID) != 11 or ID.isalnum() is False:
         ID = newID()  # generate ID
         break
     elif len(ID) != 11 or ID.isalnum() is False:
-        print("Invalid ID")  # FIX ME
+        print("Invalid ID")
 bc = barcode.Code39(ID.upper())  # create a code39 barcode with a checksum for the ID
 name = bc.save('barcode')  # save it under the name "barcode.svg", overwrite existing file with this name
-os.startfile("barcode.svg")
+os.startfile("barcode.svg")  # open the file
