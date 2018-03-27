@@ -30,6 +30,22 @@ class dbCtrl:
         cur.execute("UPDATE stock SET '{0}' = '{1}' WHERE ID = '{2}'".format(tag, item, new_val))
         db.commit()
 
+    def query(self, id, text, minPrice, maxPrice, minQty, maxQty, order):
+        query = "SELECT * FROM Stock WHERE ID != ''"
+        if (id != ''):
+            query = query + " AND ID = '{0}'".format(id)
+        if (text != ''):
+            query = query + " AND Name LIKE '%{0}%'".format(text)
+        if (minPrice != ''):
+            query = query + " AND Price >= {0}".format(minPrice)
+        if (maxPrice != ''):
+            query = query + " AND Price <= {0}".format(maxPrice)
+        if (minQty != ''):
+            query = query + " AND Quantity >= {0}".format(minQty)
+        if (maxQty != ''):
+            query = query + " AND Quantity <= {0}".format(maxQty)
+        return cur.execute(query + " ORDER BY {0}".format(order))
+
     def searchList(self, keyphrase, list):
         return list.execute("SELECT * FROM stock WHERE Name LIKE '%{0}%'".format(keyphrase))
 

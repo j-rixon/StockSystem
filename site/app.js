@@ -7,7 +7,7 @@ $(document).ready(function () {
 angular.module('myApp', []) // Specify the app to write for
 	.controller('myCtrl', function($scope, $http) { // Specify the right controller
 		$scope.productList = {} // Initialise the product list to be an empty dict
-		$scope.searchAttrs = {} // Initialise a dictionary for filter terms
+		$scope.displayOrder = 'ID';
 
 		$scope.getItems = function() {
 			$http.get("http://localhost:5002/products").then(function (response) { // Run products.get() in api.py
@@ -35,6 +35,24 @@ angular.module('myApp', []) // Specify the app to write for
         $scope.selectItem = function(product) {
             $scope.selected = product;  // set whatever is passed in as the selected item
         };
+
+        $scope.search = function() {
+            // Gather all the search terms into one dict
+            data = {ID: $scope.searchID, Order: $scope.displayOrder, Text: $scope.searchText,
+                    MinPrice: $scope.searchMinPrice, MaxPrice: $scope.searchMaxPrice,
+                    MinQty: $scope.searchMinQty, MaxQty: $scope.searchMaxQty}
+            // Post said data to this URL, the Search class
+            $http.post("http://localhost:5002/search", data).then(function(response) {
+                // update the table
+                $scope.productList = response.data;
+            });
+        };
+
+        $scope.sort = function(order) {
+            if ($scope.displayOrder == order) { $scope.displayOrder = order + ' DESC'; }
+            else { $scope.displayOrder = order; }
+            $scope.search();
+        }
 
 		$scope.getItems()
 	});

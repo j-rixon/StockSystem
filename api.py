@@ -24,9 +24,26 @@ class Product(Resource): # what is called when referring to a specific product (
         db.deleteItem(productid)  # delete the item using the database module
 
 
-def sqlClean(myvalue):      # validating strings, editing ones that may cause problems in the SQL
+class Search(Resource):
+    def post(self):
+        json_data = request.get_json(force=True)    # get the json data that is passed to it
+        Id = valueOrDefault(json_data, 'ID')    # assign variables from the JSON
+        Text = valueOrDefault(json_data, 'Text')
+        MinPrice = valueOrDefault(json_data, 'MinPrice')
+        MaxPrice = valueOrDefault(json_data, 'MaxPrice')
+        MinQty = valueOrDefault(json_data, 'MinQty')
+        MaxQty = valueOrDefault(json_data, 'MaxQty')
+        Order = valueOrDefault(json_data, 'Order')
+        return jsonify(db.query(Id, Text, MinPrice, MaxPrice, MinQty, MaxQty, Order).fetchall())
+
+def valueOrDefault(array, element, default=''):
+    if element in array:
+        return sqlClean(array[element], '')
+    return default
+
+def sqlClean(myvalue, default=None):      # validating strings, editing ones that may cause problems in the SQL
     if myvalue is None or myvalue == '': # if the passed value is null, keep it that way
-        return None
+        return default
     res = str(myvalue)  # turn the passed value into a string
     res = res.replace("'", "''") # escape ' symbols so as not to break SQL code
     res = res.replace(";", ",") # replace ; with , to avoid SQL injection
@@ -38,6 +55,7 @@ CORS(app) # enable CORS for the app - crucial for running Python script by the J
 api = Api(app) # create the API
 api.add_resource(Products, '/products') # create the page for everything in the Products class
 api.add_resource(Product, '/product/<productid>') # create the page for the Product class
+api.add_resource(Search, '/search')
 
 if __name__ == '__main__':
     app.run(port=5002)  # run the website
